@@ -1,0 +1,17 @@
+from functools import lru_cache
+@lru_cache(maxsize=None)
+
+def f(s1, s2):
+    if s1 + s2 >= 68:
+        return 0
+    moves = [f(s1+2, s2), f(s1, s2+2), f(s1*3, s2), f(s1, s2*3)]
+    loses = [i for i in moves if i <= 0]
+    if loses:
+        return -max(loses) + 1
+    else:
+        return -max(moves)
+
+winCount = int(input("Win count="))
+s1 = int(input("s1="))
+for s2 in range(1, 60):
+    print(s2, f(s1, s2))
