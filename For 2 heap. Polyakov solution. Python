@@ -11,7 +11,7 @@ def f(s1, s2):
     else:
         return -max(moves)
 
-winCount = int(input("Win count="))
+winCount = int(input("Win count "))
 s1 = int(input("s1="))
-for s2 in range(1, 60):
+for s2 in range(1, winCount-s1):
     print(s2, f(s1, s2))
