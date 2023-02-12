@@ -1,0 +1,12 @@
+def f(s):
+    if s >= 229:
+        return 0
+    c = [f(s+1), f(s*2)]
+    n = [t for t in c if t <= 0]
+    if n:
+        return -max(n)+1
+    else:
+        return - max(c)
+
+for i in range(1, 229):
+    print(i, f(i))
