@@ -1,0 +1,23 @@
+def f(s):
+    if s >= winS:
+        return "Уже победная позиция"
+    if (s + 1) >= winS or (s * 2) >= winS:# это выигрышная позиция
+        moves[s] = 1
+    elif (moves[s + 1]) < 0 and (moves[s * 2]) < 0:# это выигрышная позиция
+        moves[s] = -max(moves[s + 1], moves[s * 2]) + 1
+    elif (moves[s + 1]) > 0 and (moves[s * 2]) > 0:# это проигрышная позиция
+        moves[s] = -max(moves[s + 1], moves[s * 2])
+    elif (moves[s + 1]) < 0 or (moves[s * 2]) < 0:# это выигрышная позиция
+        moves[s] = -min(moves[s + 1], moves[s * 2]) + 1
+    else:
+        return "непредвиденное значение"
+    return moves[s]
+
+winS = int(input("winS"))
+
+moves = []
+for i in range(1, winS+1):
+    moves.append(0)
+
+for i in range(winS-1, 0, -1):
+    print(i, f(i))
