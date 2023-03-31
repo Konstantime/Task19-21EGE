@@ -1,8 +1,8 @@
-from functools import lru_cache
+from functools import lru_cache # первые две строчки необязательны, но они ускоряют работу программы
 @lru_cache(maxsize=None)
 
 def f(s1, s2):
-    if s1 + s2 >= 68:
+    if s1 + s2 >= winCount:
         return 0
     moves = [f(s1+2, s2), f(s1, s2+2), f(s1*3, s2), f(s1, s2*3)]
     loses = [i for i in moves if i <= 0]
@@ -11,7 +11,7 @@ def f(s1, s2):
     else:
         return -max(moves)
 
-winCount = int(input("Win count "))
-s1 = int(input("s1="))
+winCount = int(input("Win count ")) # количество камней необходимых для победы, эту строчку можно не писать, тогда нужно будет везде в коде заменить winCount на количество камней необходимых для победы 
+s1 = int(input("s1=")) # изначально известное количество камней в одной из куч 
 for s2 in range(1, winCount-s1):
-    print(s2, f(s1, s2))
+    print(s2, f(s1, s2)) # выведет слева количество камней в той куче где начальное количество камней неизвестно, а справо количество ходов необходимых для победы
